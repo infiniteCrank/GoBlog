@@ -3,18 +3,11 @@ this is a blog using golang and vanilla javascript
 
 # file structure
 \/blog-platform
-
-  ├── /frontend
-  
+  ├── \/frontend
   │   ├── index.html
-  
   │   ├── app.js
-  
   │   └── styles.css
-  
-  └── /backend
-  
+  └── \/backend
       ├── main.go
-      
       └── middleware.go
       
