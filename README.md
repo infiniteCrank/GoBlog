@@ -13,6 +13,6 @@ this is a blog using golang and vanilla javascript
       
 # install 
 
-```go mod init blog-platform```
-```go get -u github.com/gorilla/mux```
-```go get -u github.com/dgrijalva/jwt-go // or github.com/golang-jwt/jwt```
+```go mod init blog-platform```\
+```go get -u github.com/gorilla/mux```\
+```go get -u github.com/dgrijalva/jwt-go // or github.com/golang-jwt/jwt```\
