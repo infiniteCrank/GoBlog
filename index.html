@@ -1,30 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogging Platform</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GoLang Installation and Hello World Tutorial</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header>
+    <h1>GoLang on macOS: Installation and Hello World Tutorial</h1>
+  </header>
 
-<header>
-    <h1>My Blogging Platform</h1>
-</header>
+  <nav>
+    <ul>
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#hello-world">Hello World</a></li>
+      <li><a href="#serve-website">Serve This Website</a></li>
+    </ul>
+  </nav>
 
-<main>
-    <div id="blog-posts"></div>
-    <h2>Create a New Post</h2>
-    <form id="post-form">
-        <input type="text" id="postTitle" required placeholder="Title">
-        <textarea id="postContent" required placeholder="Content"></textarea>
-        <label>
-            <input type="checkbox" id="isPrivate"> Private
-        </label>
-        <button type="submit">Submit</button>
-    </form>
-</main>
+  <main>
+    <section id="installation">
+      <h2>1. Installing GoLang on macOS</h2>
+      <p>Follow these steps to install GoLang on your macOS system:</p>
+      <ol>
+        <li>Visit the official GoLang website: <a href="https://golang.org/dl/" target="_blank">https://golang.org/dl/</a></li>
+        <li>Download the macOS installer (e.g., <code>go1.20.5.darwin-amd64.pkg</code>).</li>
+        <li>Open the downloaded package and follow the installation prompts.</li>
+        <li>Verify the installation by opening Terminal and typing:</li>
+        <pre><code>go version</code></pre>
+        <p>You should see output similar to:</p>
+        <pre><code>go version go1.20.5 darwin/amd64</code></pre>
+      </ol>
+    </section>
 
-<script src="app.js"></script>
+    <section id="hello-world">
+      <h2>2. Creating a Hello World Application</h2>
+      <p>Let's create a simple "Hello World" application in Go:</p>
+      <ol>
+        <li>Open Terminal.</li>
+        <li>Create a new directory for your project:</li>
+        <pre><code>mkdir hello-world
+cd hello-world</code></pre>
+        <li>Create a new file named <code>main.go</code>:</li>
+        <pre><code>touch main.go</code></pre>
+        <li>Open <code>main.go</code> in your preferred text editor and add the following code:</li>
+        <pre><code>package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}</code></pre>
+        <li>Run the application:</li>
+        <pre><code>go run main.go</code></pre>
+        <p>You should see the output:</p>
+        <pre><code>Hello, World!</code></pre>
+      </ol>
+    </section>
+
+    <section id="serve-website">
+      <h2>3. Serving This Website Using npm Web Server</h2>
+      <p>To serve this tutorial website locally using an npm web server, follow these steps:</p>
+      <ol>
+        <li>Ensure you have <code>node.js</code> and <code>npm</code> installed. You can verify by running:</li>
+        <pre><code>node -v
+npm -v</code></pre>
+        <li>If not installed, download and install Node.js from <a href="https://nodejs.org/" target="_blank">https://nodejs.org/</a>.</li>
+        <li>Navigate to the project directory and install dependencies:</li>
+        <pre><code>npm install</code></pre>
+        <li>Start the web server:</li>
+        <pre><code>npm start</code></pre>
+        <li>Your default web browser should automatically open the website. If not, navigate to <a href="http://127.0.0.1:8080" target="_blank">http://127.0.0.1:8080</a>.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Your Name. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
