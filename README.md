@@ -6,8 +6,8 @@ this is a blog using golang and vanilla javascript
   ├── \/frontend\
   │   ├── index.html\
   │   ├── app.js\
-  │   └── styles.css
-  └── \/backend
-      ├── main.go
-      └── middleware.go
+  │   └── styles.css\
+  └── \/backend\
+      ├── main.go\
+      └── middleware.go\
       
