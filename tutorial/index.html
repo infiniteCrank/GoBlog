@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Blogging Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>How to Build a Blogging Platform</h1>
+</header>
+
+<main>
+    <section id="tutorial">
+        <h2>Table of Contents</h2>
+        <ol>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#frontend">Front-End Development</a></li>
+            <li><a href="#backend">Back-End Development</a></li>
+            <li><a href="#middleware">Adding Middleware</a></li>
+            <li><a href="#summary">Summary</a></li>
+        </ol>
+
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>This tutorial will guide you through building a blogging platform using Vanilla JavaScript for the front end and Go with Gorilla Mux for the back end.</p>
+        </section>
+
+        <section id="frontend">
+            <h2>Front-End Development</h2>
+            <p>We'll create a simple HTML structure and use JavaScript to handle user inputs and display blog posts.</p>
+            <h3>1. Create the HTML Structure</h3>
+            <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Blogging Platform&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;header&gt;&lt;h1&gt;My Blogging Platform&lt;/h1&gt;&lt;/header&gt;
+        &lt;main&gt;
+            &lt;div id="blog-posts"&gt;&lt;/div&gt;
+            &lt;form id="post-form"&gt;
+                &lt;input type="text" id="postTitle" required placeholder="Title"&gt;
+                &lt;textarea id="postContent" required placeholder="Content"&gt;&lt;/textarea&gt;
+                &lt;button type="submit"&gt;Submit&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/main&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+            <h3>2. Add Vanilla JavaScript</h3>
+            <pre><code>
+const apiUrl = 'http://localhost:8080/api/posts';
+const blogPostsContainer = document.getElementById('blog-posts');
+
+async function fetchPosts() {
+    const response = await fetch(apiUrl);
+    const posts = await response.json();
+    renderPosts(posts);
+}
+
+function renderPosts(posts) {
+    blogPostsContainer.innerHTML = '';
+    posts.forEach(post => {
+        const postDiv = document.createElement('div');
+        postDiv.innerHTML = \`&lt;h3&gt;\${post.title}&lt;/h3&gt;\&lt;p&gt;\${post.content}&lt;/p&gt;\`;
+        blogPostsContainer.appendChild(postDiv);
+    });
+}
+
+document.getElementById('post-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const title = document.getElementById('postTitle').value;
+    const content = document.getElementById('postContent').value;
+    
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, content })
+    });
+
+    if (response.ok) {
+        await fetchPosts(); // Refetch posts after adding
+    }
+});
+
+// Initial fetch
+fetchPosts();
+            </code></pre>
+        </section>
+
+        <section id="backend">
+            <h2>Back-End Development</h2>
+            <p>We'll set up the Go server using the Gorilla Mux Router.</p>
+            <h3>1. Create the Go Server</h3>
+            <pre><code>
+package main
+
+import
