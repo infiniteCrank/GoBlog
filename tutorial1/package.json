@@ -1,0 +1,16 @@
+{
+  "name": "tutorial1",
+  "version": "1.0.0",
+  "description": "\\/blog-tutorial\\   ├── index.html\\   └── style.css",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server --open=./index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

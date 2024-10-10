@@ -100,6 +100,57 @@ fetchPosts();
             <p>We'll set up the Go server using the Gorilla Mux Router.</p>
             <h3>1. Create the Go Server</h3>
             <pre><code>
-package main
+                package main
 
-import
+                import (
+                    "encoding/json"
+                    "net/http"
+                    "github.com/gorilla/mux"
+                )
+                
+                var posts []Post
+                
+                type Post struct {
+                    Title     string `json:"title"`
+                    Content   string `json:"content"`
+                    IsPrivate bool   `json:"isPrivate"`
+                }
+                
+                // Initialize posts slice
+                func init() {
+                    posts = []Post{}
+                }
+                
+                func getPostsHandler(w http.ResponseWriter, r *http.Request) {
+                    w.Header().Set("Content-Type", "application/json")
+                    json.NewEncoder(w).Encode(posts)
+                }
+                
+                func createPostHandler(w http.ResponseWriter, r *http.Request) {
+                    var post Post
+                    if err := json.NewDecoder(r.Body).Decode(&post); err != nil {
+                        http.Error(w, err.Error(), http.StatusBadRequest)
+                        return
+                    }
+                
+                    posts = append(posts, post)
+                    w.WriteHeader(http.StatusCreated)
+                }
+                
+                func main() {
+                    router := mux.NewRouter()
+                
+                    router.HandleFunc("/api/posts", getPostsHandler).Methods("GET")
+                    router.HandleFunc("/api/posts", createPostHandler).Methods("POST")
+                
+                    // Add your authentication middleware here
+                    // router.Use(authMiddleware)
+                
+                    http.ListenAndServe(":8080", router)
+                }
+                
+            </code></pre>
+        </section>
+    </main>
+</body>
+</html>
