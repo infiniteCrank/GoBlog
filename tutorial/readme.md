@@ -1,4 +1,4 @@
 # file structure
 \/blog-tutorial\
   ├── index.html\
-  └── style.css\
+  └── style.css
